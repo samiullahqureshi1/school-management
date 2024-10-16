@@ -3,7 +3,7 @@ import { FaUser, FaBriefcase, FaDollarSign } from 'react-icons/fa';
 
 const DashboardCards = () => {
   return (
-    <div className="flex space-x-4 p-6">
+    <div className="flex space-x-4 p-6 mt-[80px]">
       {/* Total Students Card */}
       <div className="bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl p-4 w-80 text-white hover:shadow-lg transition-shadow duration-300">
         <div className="flex items-center justify-between">

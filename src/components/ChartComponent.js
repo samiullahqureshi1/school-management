@@ -61,7 +61,7 @@
     
 
         {/* Info Box Container */}
-        <div className="absolute bg-white shadow-md rounded-lg p-6 w-[28%] top-4 left-[68%] ml-2"> {/* Adjusted position */}
+        <div className="absolute bg-white shadow-md rounded-lg p-6 w-[28%] top-[-107px] left-[68%] ml-2"> {/* Adjusted position */}
           <h3 className="text-lg font-semibold text-gray-800">Estimated Fee This Month</h3>
           
           <div className="flex items-center justify-center mt-4"> {/* Estimation section */}
