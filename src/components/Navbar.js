@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
-import {  FaSearch, FaTimes, FaShoppingCart, FaEnvelope, FaBell, FaCog, FaUserGraduate, FaBook, FaChalkboardTeacher, FaUsers, FaWallet, FaMoneyBill, FaClipboardList, FaCalendarAlt, FaPen, FaEye, FaStore } from 'react-icons/fa';
-import { SiAppstore, SiGoogleplay } from 'react-icons/si'; 
+import { FaBars, FaSearch, FaTimes, FaShoppingCart, FaEnvelope, FaBell, FaCog, FaUserGraduate, FaBook, FaChalkboardTeacher, FaUsers, FaWallet, FaMoneyBill, FaClipboardList, FaCalendarAlt, FaPen, FaEye, FaStore } from 'react-icons/fa';
+import { SiAppstore, SiGoogleplay } from 'react-icons/si';
 import { NavLink } from 'react-router-dom';
 import logo from '../images/logo.jpg';
 
 const Navbar = ({ toggleSidebar }) => {
-  
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [isClassesExpanded, setIsClassesExpanded] = useState(false); // State for classes expansion
-  const [subjectExpand,setSubjectExpand]=useState(false)
+  const [isClassesExpanded, setIsClassesExpanded] = useState(false);
+  const [subjectExpand, setSubjectExpand] = useState(false);
   const [studentExpand, setStudentExpand] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu toggle
 
-  
   const handleSearchClick = () => {
     setIsSearchVisible(!isSearchVisible);
     if (isSearchVisible) {
@@ -29,20 +28,28 @@ const Navbar = ({ toggleSidebar }) => {
     setIsClassesExpanded(!isClassesExpanded);
   };
 
-  const handleSubject=()=>{
-    setSubjectExpand(!subjectExpand)
-  }
+  const handleSubject = () => {
+    setSubjectExpand(!subjectExpand);
+  };
 
   const handleStudentToggle = () => {
     setStudentExpand(!studentExpand);
   };
+
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div>
+      {/* Navbar */}
       <nav className="flex items-center justify-between bg-gray-800 p-4 fixed top-0 left-0 right-0 z-50">
         <div className="flex items-center">
-          <img src={logo} alt="Logo" className="w-10 h-10 mr-4" />
+          <button className="text-white md:hidden" onClick={handleMenuToggle}>
+            <FaBars className="text-2xl" />
+          </button>
+          <img src={logo} alt="Logo" className="w-10 h-10 mr-4 ml-2" />
           
-
           {!isSearchVisible && (
             <FaSearch className="text-white text-xl cursor-pointer hover:text-gray-400" onClick={handleSearchClick} />
           )}
@@ -72,7 +79,8 @@ const Navbar = ({ toggleSidebar }) => {
           )}
         </div>
 
-        <div className="flex items-center space-x-4">
+        {/* App Store and Notifications */}
+        <div className="hidden md:flex items-center space-x-4">
           <div className="flex items-center space-x-4">
             <span className="flex items-center bg-gradient-to-r from-blue-500 to-blue-700 text-white px-3 py-1.5 rounded-full text-sm font-semibold cursor-pointer hover:bg-blue-600 transition duration-200 ease-in-out">
               <SiAppstore className="mr-2" />
@@ -99,16 +107,17 @@ const Navbar = ({ toggleSidebar }) => {
         </div>
       </nav>
 
-   
-        <div className="fixed left-0 top-16 w-64 h-[calc(100%_-_64px)] bg-gray-100 shadow-lg p-4 overflow-y-auto">
-          <h2 className="text-sm font-bold mb-2">menu</h2>
-          <ul className="mt-4">
-            <li className="py-2 flex items-center">
-              <FaCog className="mr-3 text-gray-600" />
-              <NavLink to="/dashboard" className="block text-gray-800 hover:text-blue-600 transition duration-200" activeClassName="text-blue-600 font-bold">
-                Dashboard
-              </NavLink>
-            </li>
+      {/* Sidebar */}
+      <div className={`fixed left-0 top-16 w-64 h-[calc(100%_-_64px)] bg-gray-100 shadow-lg p-4 overflow-y-auto transition-transform transform ${isMenuOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}>
+        <h2 className="text-sm font-bold mb-2">Menu</h2>
+        <ul className="mt-4">
+          {/* Dashboard */}
+          <li className="py-2 flex items-center">
+            <FaCog className="mr-3 text-gray-600" />
+            <NavLink to="/dashboard" className="block text-gray-800 hover:text-blue-600 transition duration-200" activeClassName="text-blue-600 font-bold">
+              Dashboard
+            </NavLink>
+          </li>
             <li className="py-2 flex items-center">
               <FaCog className="mr-3 text-gray-600" />
               <NavLink to="/settings" className="block text-gray-800 hover:text-blue-600 transition duration-200" activeClassName="text-blue-600 font-bold">
