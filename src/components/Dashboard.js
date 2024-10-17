@@ -23,12 +23,12 @@ function Dashboard() {
         {/* Main Content */}
         <div className="w-full">
           <DashboardCards isSidebarOpen={isSidebarOpen} />
-          <DashboardFooter />
+          {/* <DashboardFooter />
           <StatisticsChart />
            
           <StatusBox />
           <TodayAbsentStudents />
-          <TodayPresentStudents />
+          <TodayPresentStudents /> */}
         </div>
       </div>
     </>

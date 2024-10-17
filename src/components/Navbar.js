@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
-import { FaBars, FaSearch, FaTimes, FaShoppingCart, FaEnvelope, FaBell, FaCog, FaUserGraduate, FaBook, FaChalkboardTeacher, FaUsers, FaWallet, FaMoneyBill, FaClipboardList, FaCalendarAlt, FaPen, FaEye, FaStore } from 'react-icons/fa';
+import {  FaSearch, FaTimes, FaShoppingCart, FaEnvelope, FaBell, FaCog, FaUserGraduate, FaBook, FaChalkboardTeacher, FaUsers, FaWallet, FaMoneyBill, FaClipboardList, FaCalendarAlt, FaPen, FaEye, FaStore } from 'react-icons/fa';
 import { SiAppstore, SiGoogleplay } from 'react-icons/si'; 
 import { NavLink } from 'react-router-dom';
 import logo from '../images/logo.jpg';
 
 const Navbar = ({ toggleSidebar }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isClassesExpanded, setIsClassesExpanded] = useState(false); // State for classes expansion
   const [subjectExpand,setSubjectExpand]=useState(false)
+  const [studentExpand, setStudentExpand] = useState(false);
 
-  const handleToggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-    toggleSidebar(); // Call the toggl
-  }
   
   const handleSearchClick = () => {
     setIsSearchVisible(!isSearchVisible);
@@ -35,12 +32,16 @@ const Navbar = ({ toggleSidebar }) => {
   const handleSubject=()=>{
     setSubjectExpand(!subjectExpand)
   }
+
+  const handleStudentToggle = () => {
+    setStudentExpand(!studentExpand);
+  };
   return (
     <div>
       <nav className="flex items-center justify-between bg-gray-800 p-4 fixed top-0 left-0 right-0 z-50">
         <div className="flex items-center">
           <img src={logo} alt="Logo" className="w-10 h-10 mr-4" />
-          <FaBars className="text-white text-xl mr-4 cursor-pointer hover:text-gray-400" onClick={handleToggleSidebar} />
+          
 
           {!isSearchVisible && (
             <FaSearch className="text-white text-xl cursor-pointer hover:text-gray-400" onClick={handleSearchClick} />
@@ -98,7 +99,7 @@ const Navbar = ({ toggleSidebar }) => {
         </div>
       </nav>
 
-      {isSidebarOpen && (
+   
         <div className="fixed left-0 top-16 w-64 h-[calc(100%_-_64px)] bg-gray-100 shadow-lg p-4 overflow-y-auto">
           <h2 className="text-sm font-bold mb-2">menu</h2>
           <ul className="mt-4">
@@ -155,14 +156,42 @@ const Navbar = ({ toggleSidebar }) => {
                 </li>
               </ul>
             )}
-            
-            <li className="py-2 flex items-center">
+     {/* Student Menu */}
+     <li className="py-2 flex items-center" onClick={handleStudentToggle}>
               <FaUserGraduate className="mr-3 text-gray-600" />
-              <NavLink to="/students" className="block text-gray-800 hover:text-blue-600 transition duration-200" activeClassName="text-blue-600 font-bold">
+              <span className="block text-gray-800 hover:text-blue-600 transition duration-200 cursor-pointer">
                 Students
-              </NavLink>
+              </span>
             </li>
-            <li className="py-2 flex items-center">
+            {studentExpand && (
+              <ul className="ml-4 mt-2">
+                <li className="py-1 flex items-center">
+                  <NavLink to="/students/all" className="block text-gray-800 hover:text-blue-600 transition duration-200" activeClassName="text-blue-600 font-bold">
+                    All Students
+                  </NavLink>
+                </li>
+                <li className="py-1 flex items-center">
+                  <NavLink to="/add-new-student" className="block text-gray-800 hover:text-blue-600 transition duration-200" activeClassName="text-blue-600 font-bold">
+                    Add New Student
+                  </NavLink>
+                </li>
+                <li className="py-1 flex items-center">
+                  <NavLink to="/students/add" className="block text-gray-800 hover:text-blue-600 transition duration-200" activeClassName="text-blue-600 font-bold">
+                    Add New Admission
+                  </NavLink>
+                </li>
+                <li className="py-1 flex items-center">
+                  <NavLink to="/students/id-cards" className="block text-gray-800 hover:text-blue-600 transition duration-200" activeClassName="text-blue-600 font-bold">
+                    Student ID Cards
+                  </NavLink>
+                </li>
+                <li className="py-1 flex items-center">
+                  <NavLink to="/students/promote" className="block text-gray-800 hover:text-blue-600 transition duration-200" activeClassName="text-blue-600 font-bold">
+                    Promote Student
+                  </NavLink>
+                </li>
+              </ul>
+            )}        <li className="py-2 flex items-center">
               <FaUsers className="mr-3 text-gray-600" />
               <NavLink to="/employees" className="block text-gray-800 hover:text-blue-600 transition duration-200" activeClassName="text-blue-600 font-bold">
                 Employees
@@ -212,7 +241,7 @@ const Navbar = ({ toggleSidebar }) => {
             </li>
           </ul>
         </div>
-      )}
+   
     </div>
   );
 };

@@ -10,6 +10,8 @@ import AddClass from "./components/AddNewClasses";
 import SubjectForm from "./components/Subject";
 import AllClasses from "./components/AllClasssesRecord";
 import GetRecord from "./components/ClassesWithSubject";
+import AllStudents from "./components/AllStudents";
+import AddStudents from "./components/AddStudents";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State to manage sidebar visibility
@@ -33,7 +35,8 @@ function App() {
         <Route path="/asignSubjects" element={<SubjectForm />} />
         <Route path="/classes/all" element={<AllClasses />} />        
         <Route path="/getRecords" element={<GetRecord />} />        
-
+        <Route path="/students/all" element={<AllStudents />} />
+        <Route path="/add-new-student" element={<AddStudents />} />
       </Routes>
     </Router>
   );
