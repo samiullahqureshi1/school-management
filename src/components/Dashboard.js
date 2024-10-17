@@ -18,19 +18,10 @@ function Dashboard() {
 
   return (
     <>
-      <Navbar toggleSidebar={toggleSidebar} />
-      <div className={`flex ${isSidebarOpen ? 'ml-64' : 'ml-0'} transition-all duration-300`}>
-        {/* Main Content */}
-        <div className="w-full">
-          <DashboardCards isSidebarOpen={isSidebarOpen} />
-          {/* <DashboardFooter />
-          <StatisticsChart />
-           
-          <StatusBox />
-          <TodayAbsentStudents />
-          <TodayPresentStudents /> */}
-        </div>
-      </div>
+     
+        
+          <DashboardCards />
+          
     </>
   );
 }
