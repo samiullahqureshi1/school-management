@@ -5,7 +5,8 @@ import React from 'react';
 const AllClasses = () => {
  
   return (
-    <div className="w-[100%] mx-auto p-6 mt-20 ">
+    <div className='flex justify-end'>
+    <div className="w-[87.5%] p-6 mt-20 ">
     {/* Title Box */}
     <div className="mb-6 p-2 rounded-lg  border border-gray-500 shadow-sm">
       <div className="flex items-center">
@@ -16,7 +17,7 @@ const AllClasses = () => {
       </div>
       
     </div>
-
+    </div>
     </div>
   );
 };

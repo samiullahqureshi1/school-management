@@ -2,7 +2,8 @@ import React from 'react';
 
 const AddStudents = () => {
   return (
-    <div className="w-[100%] mx-auto p-6 mt-20">
+    <div className='flex justify-end'>
+    <div className="w-[87%]  p-6 mt-20">
       {/* Title Box */}
       <div className="mb-6 p-2 rounded-lg border border-gray-400 shadow-sm">
         <div className="flex items-center">
@@ -117,6 +118,7 @@ const AddStudents = () => {
             {/* Add other fields as needed */}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

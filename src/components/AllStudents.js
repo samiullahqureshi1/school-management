@@ -16,7 +16,8 @@ const AllStudents = () => {
   };
 
   return (
-    <div className="w-[100%] mx-auto p-6 mt-20">
+    <div className='flex justify-end'>
+    <div className="w-[87%] p-6 mt-20">
       {/* Title Box */}
       <div className="mb-6 p-2 rounded-lg border border-gray-500 shadow-sm flex justify-between items-center">
         <div className="flex items-center">
@@ -62,6 +63,7 @@ const AllStudents = () => {
       >
         <span className="text-3xl text-blue-500">+</span>
         <p className="text-blue-500 font-bold">Add New</p>
+      </div>
       </div>
     </div>
   );
