@@ -27,20 +27,20 @@ const SubjectForm = () => {
   };
 
   return (
-    <div className="w-[50%] mx-auto p-6 mt-20">
+    <div className="w-full max-w-2xl mx-auto p-4 md:p-6 mt-16 md:mt-20">
       {/* Title Box */}
       <div className="mb-6 p-2 rounded-lg border border-purple-500 shadow-sm">
-        <div className="flex items-center">
-          <h2 className="text-xl font-bold text-gray-800">Subjects</h2>
-          <span className="mx-2 text-gray-500">|</span>
+        <div className="flex items-center justify-center md:justify-start">
+          <h2 className="text-lg md:text-xl font-bold text-gray-800">Subjects</h2>
+          <span className="mx-2 text-gray-500 hidden md:inline">|</span> {/* Hide pipe separator on smaller screens */}
           <span className="text-gray-500 mr-2">🏠</span>
           <span className="text-gray-700">Add New Subject</span>
         </div>
       </div>
 
       {/* Form */}
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h6 className='text-center text-gray-950 font-bold text-2xl pb-2'>Add New Subject</h6>
+      <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+        <h6 className="text-center text-gray-950 font-bold text-lg md:text-2xl pb-2">Add New Subject</h6>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="class" className="block text-sm font-medium text-gray-700">
@@ -62,8 +62,8 @@ const SubjectForm = () => {
 
           {/* Dynamic Subject Name and Marks */}
           {subjects.map((subject, index) => (
-            <div className="flex space-x-4" key={index}>
-              <div className="w-1/2">
+            <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0" key={index}>
+              <div className="w-full md:w-1/2">
                 <label htmlFor={`subjectName-${index}`} className="block text-sm font-medium text-gray-700">
                   Subject Name*
                 </label>
@@ -77,7 +77,7 @@ const SubjectForm = () => {
                   style={{ borderColor: '#a855f7' }}
                 />
               </div>
-              <div className="w-1/2">
+              <div className="w-full md:w-1/2">
                 <label htmlFor={`marks-${index}`} className="block text-sm font-medium text-gray-700">
                   Marks*
                 </label>
@@ -95,17 +95,17 @@ const SubjectForm = () => {
           ))}
 
           {/* Add and Remove Buttons */}
-          <div className="flex space-x-4 mt-6 justify-center">
+          <div className="flex flex-col md:flex-row md:space-x-4 mt-6 justify-center">
             <button
               type="button"
-              className="flex items-center justify-center w-32 h-10 bg-gray-300 text-gray-700 font-semibold rounded-full hover:bg-gray-400"
+              className="flex items-center justify-center w-full md:w-32 h-10 bg-gray-300 text-gray-700 font-semibold rounded-full hover:bg-gray-400 mb-4 md:mb-0"
               onClick={handleAddSubject}
             >
               + Add Subject
             </button>
             <button
               type="button"
-              className="flex items-center justify-center w-32 h-10 bg-black text-white font-semibold rounded-full hover:bg-gray-800"
+              className="flex items-center justify-center w-full md:w-32 h-10 bg-black text-white font-semibold rounded-full hover:bg-gray-800"
               onClick={handleRemoveSubject}
             >
               - Remove
@@ -113,10 +113,10 @@ const SubjectForm = () => {
           </div>
 
           {/* Submit Button */}
-          <div className='flex justify-center mt-6'>
+          <div className="flex justify-center mt-6">
             <button
               type="submit"
-              className="w-[20%] bg-orange-500 text-white font-bold py-2 rounded-3xl hover:bg-orange-600"
+              className="w-full md:w-[30%] bg-orange-500 text-white font-bold py-2 rounded-3xl hover:bg-orange-600 transition-all duration-300"
             >
               + Create
             </button>
