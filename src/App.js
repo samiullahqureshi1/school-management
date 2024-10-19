@@ -12,6 +12,8 @@ import AllClasses from "./components/AllClasssesRecord";
 import GetRecord from "./components/ClassesWithSubject";
 import AllStudents from "./components/AllStudents";
 import AddStudents from "./components/AddStudents";
+import SearchStudents from "./components/promote";
+import SearchAndAdd from "./components/AllEmployee";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State to manage sidebar visibility
@@ -37,6 +39,9 @@ function App() {
         <Route path="/getRecords" element={<GetRecord />} />        
         <Route path="/students/all" element={<AllStudents />} />
         <Route path="/add-new-student" element={<AddStudents />} />
+        <Route path="/students/promote" element={<SearchStudents />} />
+        <Route path="/employees" element={<SearchAndAdd />} />
+
       </Routes>
     </Router>
   );

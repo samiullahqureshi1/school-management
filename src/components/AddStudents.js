@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 const AddStudents = () => {
+  // Reference to the form inputs
+  const formRef = useRef();
+
+  // Reset function to clear all input fields
+  const handleReset = () => {
+    if (formRef.current) {
+      formRef.current.reset(); // Resets the form
+    }
+  };
+
   return (
     <div className='flex justify-center'>
       <div className="w-[90%] max-w-6xl p-6 mt-20"> {/* Set width to 90% with max width for larger screens */}
@@ -15,7 +25,7 @@ const AddStudents = () => {
         </div>
 
         {/* Admission Form */}
-        <div className="p-4 border rounded-lg shadow-md bg-gray-50">
+        <form ref={formRef} className="p-4 border rounded-lg shadow-md bg-gray-50">
           {/* Student Information */}
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-gray-700 mb-2">
@@ -115,10 +125,146 @@ const AddStudents = () => {
                   className="w-full p-2 border border-purple-500 rounded-3xl focus:outline-none focus:ring focus:border-purple-300"
                 />
               </div>
-              {/* Add other fields as needed */}
+              <div>
+                <label className="block text-gray-600 font-medium mb-1">
+                  Birth ID/CNIC*
+                </label>
+                <input
+                  type="text"
+                  placeholder="Birth ID/CNIC"
+                  className="w-full p-2 border border-purple-500 rounded-3xl focus:outline-none focus:ring focus:border-purple-300"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600 font-medium mb-1">
+                  Orphan Student*
+                </label>
+                <select className="w-full p-2 border border-purple-500 rounded-3xl focus:outline-none focus:ring focus:border-purple-300">
+                  <option>Select</option>
+                  <option>Yes</option>
+                  <option>No</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-gray-600 font-medium mb-1">
+                  Gender*
+                </label>
+                <select className="w-full p-2 border border-purple-500 rounded-3xl focus:outline-none focus:ring focus:border-purple-300">
+                  <option>Select Gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-gray-600 font-medium mb-1">
+                  Caste*
+                </label>
+                <input
+                  type="text"
+                  placeholder="Caste"
+                  className="w-full p-2 border border-purple-500 rounded-3xl focus:outline-none focus:ring focus:border-purple-300"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600 font-medium mb-1">
+                  Previous School
+                </label>
+                <input
+                  type="text"
+                  placeholder="Previous School Name"
+                  className="w-full p-2 border border-purple-500 rounded-3xl focus:outline-none focus:ring focus:border-purple-300"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600 font-medium mb-1">
+                  Identification Marks
+                </label>
+                <input
+                  type="text"
+                  placeholder="Any Identification Marks"
+                  className="w-full p-2 border border-purple-500 rounded-3xl focus:outline-none focus:ring focus:border-purple-300"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600 font-medium mb-1">
+                  Religion
+                </label>
+                <input
+                  type="text"
+                  placeholder="Religion"
+                  className="w-full p-2 border border-purple-500 rounded-3xl focus:outline-none focus:ring focus:border-purple-300"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600 font-medium mb-1">
+                  Blood Group
+                </label>
+                <input
+                  type="text"
+                  placeholder="Blood Group"
+                  className="w-full p-2 border border-purple-500 rounded-3xl focus:outline-none focus:ring focus:border-purple-300"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600 font-medium mb-1">
+                  Previous ID
+                </label>
+                <input
+                  type="text"
+                  placeholder="Previous ID"
+                  className="w-full p-2 border border-purple-500 rounded-3xl focus:outline-none focus:ring focus:border-purple-300"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600 font-medium mb-1">
+                  Additional Notes
+                </label>
+                <textarea
+                  placeholder="Additional Notes"
+                  className="w-full p-2 border border-purple-500 rounded-3xl focus:outline-none focus:ring focus:border-purple-300"
+                  rows="3"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600 font-medium mb-1">
+                  Total Siblings
+                </label>
+                <input
+                  type="number"
+                  placeholder="Number of Siblings"
+                  className="w-full p-2 border border-purple-500 rounded-3xl focus:outline-none focus:ring focus:border-purple-300"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-600 font-medium mb-1">
+                  Address*
+                </label>
+                <textarea
+                  placeholder="Address"
+                  className="w-full p-2 border border-purple-500 rounded-3xl focus:outline-none focus:ring focus:border-purple-300"
+                  rows="3"
+                />
+              </div>
             </div>
           </div>
-        </div>
+
+          {/* Divider Line */}
+          <div className="border-t-2 border-purple-500 mt-4 mb-6" />
+
+          {/* Submit and Reset Buttons */}
+          <div className="flex justify-center mt-4 gap-4">
+            <button
+              type="button"
+              onClick={handleReset} // Call reset function on click
+              className=" md-w-[10%] px-4 py-2 text-white bg-orange-500 rounded-full hover:bg-orange-600 focus:outline-none"
+            >
+              Reset
+            </button>
+            <button className="md-w-[30%] px-4 py-2 text-white bg-purple-500 rounded-full hover:bg-purple-600 focus:outline-none">
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

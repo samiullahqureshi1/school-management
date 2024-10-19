@@ -2,22 +2,57 @@ import React, { useState } from 'react';
 import image from '../images/images.jpeg'; // Make sure this path is correct
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate(); // Initialize useNavigate
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     if (!email || !password) {
       setError('Please fill in all fields.');
       return;
     }
     setError('');
-    console.log('Logging in with:', { email, password });
-    // Add login logic here
+
+    try {
+      const response = await fetch('https://school-backend-theta.vercel.app/auth/SignIn', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Save token to localStorage
+        localStorage.setItem('token', data.token);
+
+        // Check role and redirect accordingly
+        const userRole = data.data.role; 
+        console.log(userRole)// Assuming the role is sent back in the response
+        if (userRole === 'Admin') {
+          navigate('/dashboard'); // Redirect to admin dashboard
+        } else if (userRole === 'Student') {
+          navigate('/studentDashboard'); // Redirect to student dashboard
+        } else if (userRole === 'Parent') {
+          navigate('/parentDashboard'); // Redirect to parent dashboard
+        } else {
+          setError('Unknown role.'); // Handle unexpected roles
+        }
+      } else {
+        // Show backend error message
+        setError(data.error || 'Failed to log in.');
+      }
+    } catch (error) {
+      setError('An error occurred. Please try again.');
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -68,10 +103,10 @@ const Login = () => {
               </button>
             </div>
             <div className="text-right pb-2">
-            <a href="/forgot-password" className="text-blue-500 hover:underline">
-              Forgot Password?
-            </a>
-          </div>
+              <a href="/forgot-password" className="text-blue-500 hover:underline">
+                Forgot Password?
+              </a>
+            </div>
             <button
               type="submit"
               className="bg-blue-500 w-full text-white py-2 rounded-3xl hover:bg-blue-700 transition duration-300"

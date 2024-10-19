@@ -184,16 +184,7 @@ const Navbar = ({ toggleSidebar }) => {
                     Add New Student
                   </NavLink>
                 </li>
-                <li className="py-1 flex items-center">
-                  <NavLink to="/students/add" className="block text-gray-800 hover:text-blue-600 transition duration-200" activeClassName="text-blue-600 font-bold">
-                    Add New Admission
-                  </NavLink>
-                </li>
-                <li className="py-1 flex items-center">
-                  <NavLink to="/students/id-cards" className="block text-gray-800 hover:text-blue-600 transition duration-200" activeClassName="text-blue-600 font-bold">
-                    Student ID Cards
-                  </NavLink>
-                </li>
+                
                 <li className="py-1 flex items-center">
                   <NavLink to="/students/promote" className="block text-gray-800 hover:text-blue-600 transition duration-200" activeClassName="text-blue-600 font-bold">
                     Promote Student
@@ -247,6 +238,12 @@ const Navbar = ({ toggleSidebar }) => {
               <NavLink to="/library" className="block text-gray-800 hover:text-blue-600 transition duration-200" activeClassName="text-blue-600 font-bold">
                 Library
               </NavLink>
+            </li>
+            <li className="py-2 flex items-center">
+              <FaStore className="mr-3 text-gray-600" />
+              <span className="block text-gray-800 hover:text-blue-600 transition duration-200 cursor-pointer">
+                Logout
+              </span>
             </li>
           </ul>
         </div>
